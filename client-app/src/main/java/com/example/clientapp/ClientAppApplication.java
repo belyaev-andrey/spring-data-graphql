@@ -1,7 +1,7 @@
 package com.example.clientapp;
 
 import com.example.clientapp.model.Project;
-import com.example.clientapp.services.PersonService;
+import com.example.clientapp.services.ProjectService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.haulmont.rnd.data.config.EnableGraphQlDataRepositories;
@@ -17,7 +17,7 @@ public class ClientAppApplication implements CommandLineRunner {
     private static final Log log = LogFactory.getLog(ClientAppApplication.class.getName());
 
     @Autowired
-    private PersonService service;
+    private ProjectService service;
 
     public static void main(String[] args) {
         SpringApplication.run(ClientAppApplication.class, args);
@@ -34,7 +34,7 @@ public class ClientAppApplication implements CommandLineRunner {
             System.out.println(project);
         }
 
-        for (Project project : service.findByNameAndId("JUG.EKB Preparation", 2L)) {
+        for (Project project : service.findProjectByNameAndId("JUG.EKB Preparation", 2L)) {
             System.out.println(project);
         }
 

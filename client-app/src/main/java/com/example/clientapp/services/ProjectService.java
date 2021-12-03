@@ -2,16 +2,17 @@ package com.example.clientapp.services;
 
 import com.example.clientapp.ProjectRepository;
 import com.example.clientapp.model.Project;
+import org.haulmont.rnd.data.config.GraphQlQuery;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class PersonService {
+public class ProjectService {
 
     private ProjectRepository projectRepository;
 
-    public PersonService(ProjectRepository projectRepository) {
+    public ProjectService(ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
     }
 
@@ -23,7 +24,8 @@ public class PersonService {
         return projectRepository.findProjectByName(name);
     }
 
-    public List<Project> findByNameAndId(String name, Long id) {
+    @GraphQlQuery("findByNameAndId")
+    public List<Project> findProjectByNameAndId(String name, Long id) {
         return projectRepository.findByNameAndId(name, id);
     }
 }
