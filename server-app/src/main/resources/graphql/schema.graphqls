@@ -1,7 +1,8 @@
 type Query {
-    findProjectByName : [Project]
+    findProjectByName(name: String) : [Project]
     findAllProjects: [Project]
-    findProjectById: Project
+    findProjectById(id: ID): Project
+    findByNameAndId(name: String, id: ID) : [Project]
 }
 
 type Project {

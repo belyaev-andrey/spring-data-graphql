@@ -14,4 +14,6 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
     List<Project> findByNameIsLike(String name);
 
+    List<Project> findByNameAndId(String name, Long id);
+
 }

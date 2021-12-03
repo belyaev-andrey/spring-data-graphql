@@ -13,6 +13,12 @@ import java.util.Optional;
 
 public class GraphQlRepositoryFactory extends RepositoryFactorySupport {
 
+    private String defaultEndpointUrl;
+
+    public GraphQlRepositoryFactory(String defaultEndpointUrl) {
+        this.defaultEndpointUrl = defaultEndpointUrl;
+    }
+
     @Override
     public <T, ID> EntityInformation<T, ID> getEntityInformation(Class<T> domainClass) {
         return new GraphQlEntityInformation<>(domainClass);
@@ -21,7 +27,7 @@ public class GraphQlRepositoryFactory extends RepositoryFactorySupport {
     @Override
     protected Object getTargetRepository(RepositoryInformation metadata) {
         Object domainClass = metadata.getDomainType();
-        return getTargetRepositoryViaReflection(metadata, domainClass);
+        return getTargetRepositoryViaReflection(metadata, domainClass, defaultEndpointUrl);
     }
 
     @Override
@@ -31,6 +37,6 @@ public class GraphQlRepositoryFactory extends RepositoryFactorySupport {
 
     @Override
     protected Optional<QueryLookupStrategy> getQueryLookupStrategy(QueryLookupStrategy.Key key, QueryMethodEvaluationContextProvider evaluationContextProvider) {
-        return Optional.of(new GraphQlQueryLookupStrategy());
+        return Optional.of(new GraphQlQueryLookupStrategy(defaultEndpointUrl));
     }
 }

@@ -5,16 +5,13 @@ import com.example.clientapp.services.PersonService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.haulmont.rnd.data.config.EnableGraphQlDataRepositories;
-import org.haulmont.rnd.data.query.GraphQlQueryLookupStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Arrays;
-
 @SpringBootApplication
-@EnableGraphQlDataRepositories
+@EnableGraphQlDataRepositories(defaultEndpointUrl = "http://MacBook-Pro-abelyaev.local:8080/graphql")
 public class ClientAppApplication implements CommandLineRunner {
 
     private static final Log log = LogFactory.getLog(ClientAppApplication.class.getName());
@@ -30,6 +27,14 @@ public class ClientAppApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         log.info("Starting Spring Data GraphQL application...");
         for (Project project : service.findAllProjects()) {
+            System.out.println(project);
+        }
+
+        for (Project project : service.findProjectByName("JUG.EKB Preparation")) {
+            System.out.println(project);
+        }
+
+        for (Project project : service.findByNameAndId("JUG.EKB Preparation", 2L)) {
             System.out.println(project);
         }
 

@@ -19,7 +19,7 @@ public class ProjectController {
     }
 
     @QueryMapping("findProjectByName")
-    public List<Project> findByName(@Argument String name) {
+    public List<Project> findByName(@Argument("name") String name) {
         return projectRepository.findByName(name);
     }
 
@@ -27,8 +27,14 @@ public class ProjectController {
     public List<Project> findAll() {
         return projectRepository.findAll();
     }
+
     @QueryMapping("findProjectById")
     public Optional<Project> findById(@Argument Long aLong) {
         return projectRepository.findById(aLong);
+    }
+
+    @QueryMapping("findByNameAndId")
+    public List<Project> findByNameAndId(@Argument String name, @Argument Long id) {
+        return projectRepository.findByNameAndId(name, id);
     }
 }

@@ -10,4 +10,7 @@ public interface ProjectRepository extends GraphQlDataRepository<Project, Long> 
 
     List<Project> findAllProjects();
 
+    List<Project> findProjectByName(String name);
+
+    List<Project> findByNameAndId(String name, Long id);
 }

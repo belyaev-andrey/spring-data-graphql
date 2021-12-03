@@ -10,12 +10,22 @@ import java.io.Serializable;
 public class GraphQlRepositoryFactoryBean <T extends Repository<S, ID>, S, ID extends Serializable>
         extends RepositoryFactoryBeanSupport<T, S, ID> implements BeanFactoryAware {
 
+    private String defaultEndpointUrl;
+
     public GraphQlRepositoryFactoryBean(Class<? extends T> repositoryInterface) {
         super(repositoryInterface);
     }
 
+    public String getDefaultEndpointUrl() {
+        return defaultEndpointUrl;
+    }
+
+    public void setDefaultEndpointUrl(String defaultEndpointUrl) {
+        this.defaultEndpointUrl = defaultEndpointUrl;
+    }
+
     @Override
     protected RepositoryFactorySupport createRepositoryFactory() {
-        return new GraphQlRepositoryFactory();
+        return new GraphQlRepositoryFactory(getDefaultEndpointUrl());
     }
 }

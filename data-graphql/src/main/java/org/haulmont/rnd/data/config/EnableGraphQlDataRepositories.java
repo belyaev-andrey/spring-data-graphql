@@ -100,4 +100,10 @@ public @interface EnableGraphQlDataRepositories {
      */
     boolean considerNestedRepositories() default false;
 
+    /**
+     * GraphQL specific setting, specifies which endpoint to use.
+     * @return default endpoint URL
+     */
+    String defaultEndpointUrl() default "http://localhost:8080/graphql";
+
 }

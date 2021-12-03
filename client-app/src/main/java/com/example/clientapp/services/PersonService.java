@@ -4,7 +4,6 @@ import com.example.clientapp.ProjectRepository;
 import com.example.clientapp.model.Project;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -18,5 +17,13 @@ public class PersonService {
 
     public List<Project> findAllProjects() {
         return projectRepository.findAllProjects();
+    }
+
+    public List<Project> findProjectByName(String name) {
+        return projectRepository.findProjectByName(name);
+    }
+
+    public List<Project> findByNameAndId(String name, Long id) {
+        return projectRepository.findByNameAndId(name, id);
     }
 }
