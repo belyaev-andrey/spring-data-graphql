@@ -1,2 +1,7 @@
 # Project exclude paths
 /data-graphql/target/
+.idea
+.jpb
+*.iml
+/server-app/target
+/client-app/target
