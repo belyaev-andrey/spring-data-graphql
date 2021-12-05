@@ -11,7 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@EnableGraphQlDataRepositories(defaultEndpointUrl = "http://MacBook-Pro-abelyaev.local:8080/graphql")
+@EnableGraphQlDataRepositories(defaultEndpointUrl = "http://localhost:8080/graphql")
 public class ClientAppApplication implements CommandLineRunner {
 
     private static final Log log = LogFactory.getLog(ClientAppApplication.class.getName());

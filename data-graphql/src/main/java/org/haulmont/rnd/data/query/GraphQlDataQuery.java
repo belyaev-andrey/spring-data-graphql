@@ -24,6 +24,7 @@ public abstract class GraphQlDataQuery implements RepositoryQuery {
     protected final ProjectionFactory factory;
     protected final String queryName;
     protected final String defaultEndpointUrl;
+    protected final List<String> paramNames = new ArrayList<>();
 
     public GraphQlDataQuery(Method method, RepositoryMetadata metadata, ProjectionFactory factory, String defaultEndpointUrl) {
         this.method = method;
@@ -32,13 +33,7 @@ public abstract class GraphQlDataQuery implements RepositoryQuery {
         GraphQlQuery annotation = method.getDeclaredAnnotation(GraphQlQuery.class);
         queryName = annotation != null ? annotation.value() : method.getName();
         this.defaultEndpointUrl = defaultEndpointUrl;
-    }
-
-    @Override
-    public Object execute(Object[] parameters) {
-        List<String> paramNames = new ArrayList<>();
-        if(parameters.length > 0) {
-            log.debug(String.format("Query Parameters: \"%s\"", Arrays.toString(parameters)));
+        if (method.getParameterCount() > 0) {
             PartTree tree = new PartTree(method.getName(), metadata.getReturnedDomainClass(method));
             if (tree.iterator().hasNext()) {
                 for (PartTree.OrPart orPart : tree) {
@@ -48,6 +43,11 @@ public abstract class GraphQlDataQuery implements RepositoryQuery {
                 }
             }
         }
+    }
+
+    @Override
+    public Object execute(Object[] parameters) {
+        log.debug(String.format("Query Parameters: \"%s\"", Arrays.toString(parameters)));
         return doExecute(Arrays.asList(parameters), paramNames);
     }
 
