@@ -34,7 +34,7 @@ public abstract class GraphQlDataQuery implements RepositoryQuery {
         queryName = annotation != null ? annotation.value() : method.getName();
         this.defaultEndpointUrl = defaultEndpointUrl;
         if (method.getParameterCount() > 0) {
-            PartTree tree = new PartTree(method.getName(), metadata.getReturnedDomainClass(method));
+            PartTree tree = new PartTree(queryName, metadata.getReturnedDomainClass(method));
             if (tree.iterator().hasNext()) {
                 for (PartTree.OrPart orPart : tree) {
                     for (Part part : orPart) {

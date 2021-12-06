@@ -24,8 +24,7 @@ public class ProjectService {
         return projectRepository.findProjectByName(name);
     }
 
-    @GraphQlQuery("findByNameAndId")
     public List<Project> findProjectByNameAndId(String name, Long id) {
-        return projectRepository.findByNameAndId(name, id);
+        return projectRepository.findProjectsByAllData(name, id);
     }
 }
