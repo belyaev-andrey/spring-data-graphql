@@ -1,11 +1,11 @@
 package org.haulmont.rnd.data.config;
 
 import org.haulmont.rnd.data.GraphQlRepositoriesRegistrar;
-import org.haulmont.rnd.data.repository.support.GraphQlDataRepositoryImpl;
 import org.haulmont.rnd.data.repository.support.GraphQlRepositoryFactoryBean;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.repository.config.DefaultRepositoryBaseClass;
 import org.springframework.data.repository.query.QueryLookupStrategy;
 
 import java.lang.annotation.*;
@@ -91,7 +91,7 @@ public @interface EnableGraphQlDataRepositories {
      *
      * @return Repository base class to be used to create repository proxies for this particular configuration.
      */
-    Class<?> repositoryBaseClass() default GraphQlDataRepositoryImpl.class;
+    Class<?> repositoryBaseClass() default DefaultRepositoryBaseClass.class;
 
     /**
      * Configures whether nested repository-interfaces (e.g. defined as inner classes) should be discovered by the

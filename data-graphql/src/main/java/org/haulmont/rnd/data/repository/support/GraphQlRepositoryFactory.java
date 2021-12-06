@@ -2,6 +2,7 @@ package org.haulmont.rnd.data.repository.support;
 
 import org.haulmont.rnd.data.query.GraphQlQueryLookupStrategy;
 import org.haulmont.rnd.data.repository.GraphQlDataRepository;
+import org.springframework.data.repository.config.DefaultRepositoryBaseClass;
 import org.springframework.data.repository.core.EntityInformation;
 import org.springframework.data.repository.core.RepositoryInformation;
 import org.springframework.data.repository.core.RepositoryMetadata;
@@ -26,13 +27,12 @@ public class GraphQlRepositoryFactory extends RepositoryFactorySupport {
 
     @Override
     protected Object getTargetRepository(RepositoryInformation metadata) {
-        Object domainClass = metadata.getDomainType();
-        return getTargetRepositoryViaReflection(metadata, domainClass, defaultEndpointUrl);
+        return getTargetRepositoryViaReflection(metadata);
     }
 
     @Override
     protected Class<?> getRepositoryBaseClass(RepositoryMetadata metadata) {
-        return GraphQlDataRepositoryImpl.class;
+        return DefaultRepositoryBaseClass.class;
     }
 
     @Override
