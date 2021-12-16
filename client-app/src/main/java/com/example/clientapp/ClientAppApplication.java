@@ -27,15 +27,15 @@ public class ClientAppApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         log.info("Starting Spring Data GraphQL application...");
         for (Project project : service.findAllProjects()) {
-            System.out.println(project);
+            log.info(project);
         }
 
         for (Project project : service.findProjectByName("JUG.EKB Preparation")) {
-            System.out.println(project);
+            log.info(project);
         }
 
         for (Project project : service.findProjectByNameAndId("JUG.EKB Preparation", 2L)) {
-            System.out.println(project);
+            log.info(project);
         }
 
     }
