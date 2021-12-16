@@ -1,7 +1,6 @@
 package org.haulmont.rnd.data.repository.support;
 
 import org.haulmont.rnd.data.query.GraphQlQueryLookupStrategy;
-import org.haulmont.rnd.data.repository.GraphQlDataRepository;
 import org.springframework.data.repository.config.DefaultRepositoryBaseClass;
 import org.springframework.data.repository.core.EntityInformation;
 import org.springframework.data.repository.core.RepositoryInformation;
